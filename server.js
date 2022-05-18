@@ -2,8 +2,15 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
+import cors from "cors";
 import { fileURLToPath } from "url";
 
+import {
+  userRouter,
+  authRouter,
+  placeRouter,
+  ratingRouter,
+} from "./api/routes/index.js";
 // config environments
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +29,7 @@ mongoose.connection.on("error", function (e) {
 
 // Express
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Routes
@@ -29,8 +37,10 @@ app.get("/", (request, response) => {
   response.send("ILOVETREK SERVER");
 });
 
-// app.use("/auth", userRouter);
-// app.use("/api", listRouter);
+app.use("/api", userRouter);
+app.use("/api", authRouter);
+app.use("/api", placeRouter);
+app.use("/api", ratingRouter);
 
 const PORT = process.env.PORT || 5000;
 
