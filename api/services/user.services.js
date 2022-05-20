@@ -24,6 +24,15 @@ export const getAll = async () => {
   return users;
 };
 
+export const getAllGuidesRequests = async () => {
+  const usersSend = await User.find({ status: "Enviado" });
+  const usersRejected = await User.find({ status: "Rechazado" });
+  const usersApproved = await User.find({ status: "Aprobado" });
+
+  const users = usersSend.concat(usersRejected).concat(usersApproved);
+  return users;
+};
+
 export const getOne = async (id) => {
   const user = await User.findById(id);
   return user;

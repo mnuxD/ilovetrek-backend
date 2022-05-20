@@ -10,6 +10,7 @@ import {
   authRouter,
   placeRouter,
   ratingRouter,
+  adminRouter,
 } from "./api/routes/index.js";
 // config environments
 const __filename = fileURLToPath(import.meta.url);
@@ -41,6 +42,7 @@ app.use("/api", userRouter);
 app.use("/api", authRouter);
 app.use("/api", placeRouter);
 app.use("/api", ratingRouter);
+app.use("/api", adminRouter);
 
 const PORT = process.env.PORT || 5000;
 

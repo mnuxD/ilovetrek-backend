@@ -1,4 +1,4 @@
-import { User } from "../models/index.js";
+import { User, Admin } from "../models/index.js";
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -19,5 +19,16 @@ export const logIn = async ({ email, password }) => {
 
   return (await validPass(password, userDB.password))
     ? { token, ...userDB._doc }
+    : false;
+};
+
+export const logInAdmin = async ({ email, password }) => {
+  const admin = await Admin.find({ email });
+  if (admin.length === 0) throw new Error();
+  const adminDB = admin[0];
+  const token = getToken(adminDB.email);
+
+  return (await validPass(password, adminDB.password))
+    ? { token, ...adminDB._doc }
     : false;
 };

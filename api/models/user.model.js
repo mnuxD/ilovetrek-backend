@@ -6,9 +6,9 @@ const schemaUsers = {
   password: String,
   firstname: String,
   lastname: String,
-  role: { type: String, default: "user" },
+  role: { type: String, default: "user" }, // user, guide, admin
   photo_url: { type: String, default: "" },
-  status: { type: String, default: "none" }, //none, send, rejected, approved
+  status: { type: String, default: "none" }, //none, Enviado, Rechazado, Aprobado
   instagram: { type: String, default: "" },
   facebook: { type: String, default: "" },
   linkedin: { type: String, default: "" },

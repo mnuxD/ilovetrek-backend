@@ -1,6 +1,7 @@
 import { userServices } from "../services/index.js";
 
-const { create, getAll, getOne, update1, update2 } = userServices;
+const { create, getAll, getAllGuidesRequests, getOne, update1, update2 } =
+  userServices;
 
 //register a new user
 export const register = async (req, res) => {
@@ -18,6 +19,18 @@ export const register = async (req, res) => {
 export const getAllUsers = async (req, res) => {
   try {
     const users = await getAll();
+    if (users.length === 0) res.status(204).send();
+    else res.status(200).json(users);
+    console.log("users", users);
+  } catch (e) {
+    res.status(500).json({ error: e });
+  }
+};
+
+// get all requests to guide in the platform
+export const getAllRequests = async (req, res) => {
+  try {
+    const users = await getAllGuidesRequests();
     if (users.length === 0) res.status(204).send();
     else res.status(200).json(users);
     console.log("users", users);
