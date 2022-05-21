@@ -28,8 +28,7 @@ export const getRagingsByPlace = async (req, res) => {
   try {
     const { id } = req.params;
     const ratings = await getRatingByPlace(id);
-    if (ratings.length === 0) res.status(204).send();
-    else res.status(200).json(ratings);
+    res.status(200).json(ratings);
     console.log("RATINGS", ratings);
   } catch (error) {
     res.status(500).json({ error: e });

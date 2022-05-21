@@ -1,6 +1,7 @@
 import express from "express";
 
 import { userController } from "../controllers/index.js";
+import { validateToken } from "../middlewares/index.js";
 
 const {
   register,
@@ -23,10 +24,10 @@ const userRoutes = {
 };
 
 router.post(userRoutes.REGISTER, register);
-router.get(userRoutes.GET_ALL, getAllUsers);
-router.get(userRoutes.GET_REQUESTS, getAllRequests);
+router.get(userRoutes.GET_ALL, validateToken, getAllUsers);
+router.get(userRoutes.GET_REQUESTS, validateToken, getAllRequests);
 router.get(userRoutes.GET_ONE, getOneUser);
-router.put(userRoutes.UPDATE_USER_1, updateUser1);
-router.put(userRoutes.UPDATE_USER_2, updateUser2);
+router.put(userRoutes.UPDATE_USER_1, validateToken, updateUser1);
+router.put(userRoutes.UPDATE_USER_2, validateToken, updateUser2);
 
 export default router;

@@ -1,6 +1,7 @@
 import express from "express";
 
 import { placeController } from "../controllers/index.js";
+import { validateToken } from "../middlewares/index.js";
 
 const {
   createPlace,
@@ -22,11 +23,11 @@ const placeRoutes = {
   DELETE_PLACE: "/place/delete/:id",
 };
 
-router.post(placeRoutes.CREATE, createPlace);
+router.post(placeRoutes.CREATE, validateToken, createPlace);
 router.get(placeRoutes.GET_ALL, getAllPlaces);
-router.get(placeRoutes.GET_ONE, getPlaceById);
-router.put(placeRoutes.CHANGE_VERIFIED, changeVerifiedPlace);
-router.put(placeRoutes.UPDATE_PLACE, updateOnePlace);
-router.delete(placeRoutes.DELETE_PLACE, deletePlace);
+router.get(placeRoutes.GET_ONE, validateToken, getPlaceById);
+router.put(placeRoutes.CHANGE_VERIFIED, validateToken, changeVerifiedPlace);
+router.put(placeRoutes.UPDATE_PLACE, validateToken, updateOnePlace);
+router.delete(placeRoutes.DELETE_PLACE, validateToken, deletePlace);
 
 export default router;

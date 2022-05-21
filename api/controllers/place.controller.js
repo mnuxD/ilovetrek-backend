@@ -17,8 +17,7 @@ export const createPlace = async (req, res) => {
 export const getAllPlaces = async (req, res) => {
   try {
     const places = await getAll();
-    if (places.length === 0) res.status(204).send();
-    else res.status(200).json(places);
+    res.status(200).json(places);
   } catch (error) {
     res.status(500).json({ error: e });
   }
