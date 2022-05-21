@@ -1,6 +1,6 @@
 import { ratingServices } from "../services/index.js";
 
-const { create, getRatingByPlace, getAll } = ratingServices;
+const { create, getRatingByPlace, getAll, deleteOneRating } = ratingServices;
 
 export const createRating = async (req, res) => {
   try {
@@ -33,5 +33,16 @@ export const getRagingsByPlace = async (req, res) => {
     console.log("RATINGS", ratings);
   } catch (error) {
     res.status(500).json({ error: e });
+  }
+};
+
+export const deleteRating = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedRating = await deleteOneRating(id);
+    if (!deletedRating) res.status(204).json({ error: "No rating to delete" });
+    else res.status(200).json(deletedRating);
+  } catch (error) {
+    res.status(500).json({ error });
   }
 };

@@ -45,3 +45,11 @@ export const getRatingByPlace = async (id_place) => {
   // console.log("DASDAS", arrayRatings);
   return arrayRatings;
 };
+
+export const deleteOneRating = async (id) => {
+  const ratingToDelete = await Rating.findById(id);
+  if (ratingToDelete) {
+    const deletedRating = await Rating.deleteOne(ratingToDelete);
+    return deletedRating;
+  } else return false;
+};
