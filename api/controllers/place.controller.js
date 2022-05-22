@@ -9,7 +9,6 @@ export const createPlace = async (req, res) => {
     const newPlace = await create(req.body);
     res.status(201).json(newPlace);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 };
@@ -29,7 +28,6 @@ export const getPlaceById = async (req, res) => {
     const place = await getOne(id);
     if (!place) res.status(204).send();
     else res.status(200).json(place);
-    console.log("place", place);
   } catch (error) {
     res.status(500).send();
   }
@@ -55,7 +53,6 @@ export const updateOnePlace = async (req, res) => {
     else res.status(200).json(placeUpdated);
   } catch (error) {
     res.status(500).send(error);
-    console.log(error);
   }
 };
 

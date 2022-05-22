@@ -26,7 +26,7 @@ const userRoutes = {
 router.post(userRoutes.REGISTER, register);
 router.get(userRoutes.GET_ALL, validateToken, getAllUsers);
 router.get(userRoutes.GET_REQUESTS, validateToken, getAllRequests);
-router.get(userRoutes.GET_ONE, getOneUser);
+router.get(userRoutes.GET_ONE, validateToken, getOneUser);
 router.put(userRoutes.UPDATE_USER_1, validateToken, updateUser1);
 router.put(userRoutes.UPDATE_USER_2, validateToken, updateUser2);
 

@@ -5,10 +5,8 @@ const { create, getRatingByPlace, getAll, deleteOneRating } = ratingServices;
 export const createRating = async (req, res) => {
   try {
     const newRating = await create(req.body);
-    console.log(newRating);
     res.status(201).json(newRating);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 };
@@ -16,10 +14,8 @@ export const createRating = async (req, res) => {
 export const getAllRatings = async (req, res) => {
   try {
     const ratings = await getAll();
-    console.log(ratings);
     res.status(200).json(ratings);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 };
@@ -29,7 +25,6 @@ export const getRagingsByPlace = async (req, res) => {
     const { id } = req.params;
     const ratings = await getRatingByPlace(id);
     res.status(200).json(ratings);
-    console.log("RATINGS", ratings);
   } catch (error) {
     res.status(500).json({ error: e });
   }

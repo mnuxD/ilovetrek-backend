@@ -7,10 +7,8 @@ const { create, getAll, getAllGuidesRequests, getOne, update1, update2 } =
 export const register = async (req, res) => {
   try {
     const newUser = await create(req.body);
-    console.log(newUser);
     res.status(201).json(newUser);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 };
@@ -21,7 +19,6 @@ export const getAllUsers = async (req, res) => {
     const users = await getAll();
     if (users.length === 0) res.status(204).send();
     else res.status(200).json(users);
-    console.log("users", users);
   } catch (e) {
     res.status(500).json({ error: e });
   }
@@ -33,7 +30,6 @@ export const getAllRequests = async (req, res) => {
     const users = await getAllGuidesRequests();
     if (users.length === 0) res.status(204).send();
     else res.status(200).json(users);
-    console.log("users", users);
   } catch (e) {
     res.status(500).json({ error: e });
   }

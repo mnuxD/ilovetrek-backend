@@ -19,7 +19,6 @@ export const getOne = async (id) => {
 export const changeVerified = async (id) => {
   const place = await Place.findById(id).lean();
   const newPlace = { ...place, verified: !place.verified };
-  console.log(newPlace);
   await Place.updateOne(place, newPlace);
   return newPlace;
 };

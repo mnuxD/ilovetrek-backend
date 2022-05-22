@@ -7,10 +7,8 @@ export const create = async (data) => {
 
   // Email and password validations
   if (user_exist.length !== 0) {
-    console.log("Su correo ya esta en uso");
     throw new Error();
   } else if (password.split("").length < 8) {
-    console.log("La contraseña debe incluir al menos 8 caracteres.");
     throw new Error();
   }
   const hash = await bcrypt.hash(password, 10);
@@ -40,7 +38,6 @@ export const getOne = async (id) => {
 
 export const update1 = async (user, data) => {
   if (data.password.split("").length < 8) {
-    console.log("La contraseña debe incluir al menos 8 caracteres.");
     throw new Error();
   }
   const hash = await bcrypt.hash(data.password, 10);

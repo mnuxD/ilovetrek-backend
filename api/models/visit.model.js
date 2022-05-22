@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+//NOT USED
+
 // Schema visits
 const schemaVisits = {
   id_user: String,

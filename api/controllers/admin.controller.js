@@ -6,10 +6,8 @@ const { create, getAll, getOne } = adminServices;
 export const register = async (req, res) => {
   try {
     const newAdmin = await create(req.body);
-    console.log(newAdmin);
     res.status(201).json(newAdmin);
   } catch (error) {
-    console.log(error);
     res.status(500).send();
   }
 };
@@ -20,7 +18,6 @@ export const getAllAdmins = async (req, res) => {
     const admins = await getAll();
     if (admins.length === 0) res.status(204).send();
     else res.status(200).json(admins);
-    console.log("admins", admins);
   } catch (e) {
     res.status(500).json({ error: e });
   }
