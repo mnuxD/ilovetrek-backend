@@ -73,3 +73,31 @@ export const updateUser2 = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+export const palindrome = async (req, res) => {
+  try {
+    const { text } = req.body;
+    // Remove capital letters and accents
+    const clean_text = text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    // Convert to array and remove punctuation and spaces
+    const array = clean_text.split("").filter((element) => {
+      return (
+        element !== " " && element !== "," && element !== ";" && element !== "."
+      );
+    });
+
+    // Create a new array in reverse order
+    const reverse_array = Object.values(array).reverse();
+
+    // Convert to string and check if it's a palindrome
+    const value = array.join("") === reverse_array.join("");
+
+    res.status(200).json(value);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
