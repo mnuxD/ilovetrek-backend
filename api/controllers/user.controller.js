@@ -77,6 +77,7 @@ export const updateUser2 = async (req, res) => {
 export const palindrome = async (req, res) => {
   try {
     const { text } = req.body;
+
     // Remove capital letters and accents
     const clean_text = text
       .toLowerCase()
@@ -96,7 +97,7 @@ export const palindrome = async (req, res) => {
     // Convert to string and check if it's a palindrome
     const value = array.join("") === reverse_array.join("");
 
-    res.status(200).json(value);
+    res.status(200).json(text);
   } catch (error) {
     res.status(500).send(error);
   }
